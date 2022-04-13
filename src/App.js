@@ -5,27 +5,26 @@ import { tick } from './tick';
 
 const defaultState = { stage: 0, tick: 0 };
 const intervalDurationSeconds = 1;
-let currentIntervalId = null;
+let currentTickFunction = null;
+
+setInterval(() => {
+  if (currentTickFunction != null) {
+    currentTickFunction();
+  }
+}, intervalDurationSeconds * 1000);
 
 export default function App() {
   const [gameState, setGameStateRaw] = useState(
-    localStorage.getItem('gameState') || defaultState
+    JSON.parse(localStorage.getItem('gameState')) || defaultState
   );
 
   const setGameState = (s) => {
-    s = { ...gameState, ...s };
-    localStorage.setItem('gameState', s);
-    setGameStateRaw(s);
+    const newState = { ...gameState, ...s };
+    localStorage.setItem('gameState', JSON.stringify(newState));
+    setGameStateRaw(newState);
   };
 
-  if (currentIntervalId != null) {
-    clearInterval(currentIntervalId);
-  }
-
-  currentIntervalId = setInterval(
-    () => tick(gameState, setGameState),
-    intervalDurationSeconds * 1000
-  );
+  currentTickFunction = () => tick(gameState, setGameState);
 
   const content =
     gameState.stage == 0 ? (
