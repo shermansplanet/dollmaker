@@ -1,0 +1,27 @@
+:root {
+  --bg: #222;
+  --content: #ccc;
+  --highlight: #f55;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--content);
+}
+
+button {
+  cursor: pointer;
+}
+
+.textButton {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  color: var(--highlight);
+  margin: 8px;
+  padding: 0;
+}
+
+.textButton:hover {
+  color: white;
+}
