@@ -10,7 +10,7 @@ const introText = [
   "But with your talents, you're never alone for long.",
 ];
 
-export default ({ cb }) => {
+export default ({ finishIntro }) => {
   const [progress, setProgress] = useState(1);
   return (
     <div style={{ maxWidth: '600px' }}>
@@ -23,7 +23,7 @@ export default ({ cb }) => {
         className="textButton"
         onClick={() => {
           if (progress == introText.length) {
-            cb();
+            finishIntro();
           } else {
             setProgress(progress + 1);
           }

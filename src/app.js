@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import './style.css';
 import Intro from './intro';
+import Game from './game';
 import { tick } from './tick';
 
-const defaultState = { stage: 0, tick: 0 };
+const defaultState = {
+  stage: 0,
+  tick: 0,
+  player: {
+    name: 'You',
+    size: 61000,
+    health: 100,
+    veg: 100,
+    meat: 100,
+  },
+};
 const intervalDurationSeconds = 1;
 let currentTickFunction = null;
 
@@ -28,9 +39,9 @@ export default function App() {
 
   const content =
     gameState.stage == 0 ? (
-      <Intro cb={() => setGameState({ stage: 1 })} />
+      <Intro finishIntro={() => setGameState({ stage: 1 })} />
     ) : (
-      <div style={{ display: 'flex' }}>{gameState.tick}</div>
+      <Game gameState={gameState} setGameState={setGameState} />
     );
   return (
     <div>

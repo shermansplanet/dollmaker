@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 :root {
   --bg: #222;
   --content: #ccc;
   --highlight: #f55;
+  font-family: 'Merriweather', serif;
 }
 
 body {
@@ -24,4 +27,8 @@ button {
 
 .textButton:hover {
   color: white;
+}
+
+.card {
+  background-color: #333;
 }
