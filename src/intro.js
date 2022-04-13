@@ -5,7 +5,7 @@ const introText = [
   "They'd be idiots, in that case.",
   'They may have razed your arcane workshop, reduced your books to ash and your instruments to scrap. They may have demolished your minions and turned your human allies against you.',
   'But you have strength in your body, life in your blood, and knowledge in your mind.',
-  'Perhaps they think you are alone.',
+  'Perhaps they think you are lost and alone.',
   'And you are.',
   "But with your talents, you're never alone for long.",
 ];
@@ -13,7 +13,7 @@ const introText = [
 export default ({ cb }) => {
   const [progress, setProgress] = useState(1);
   return (
-    <div>
+    <div style={{ maxWidth: '600px' }}>
       {introText.slice(0, progress).map((x, i) => (
         <div style={{ margin: '8px' }} key={i}>
           {x}
