@@ -5,7 +5,7 @@ import Game from './game';
 import { tick } from './tick';
 
 const defaultState = {
-  stage: 0,
+  stage: 1,
   tick: 0,
   player: {
     name: 'You',
@@ -26,7 +26,9 @@ setInterval(() => {
 
 export default function App() {
   const [gameState, setGameStateRaw] = useState(
-    JSON.parse(localStorage.getItem('gameState')) || defaultState
+    JSON.parse(
+      localStorage.getItem('gameState') || JSON.stringify(defaultState)
+    )
   );
 
   const setGameState = (s) => {
@@ -48,7 +50,7 @@ export default function App() {
       <div>
         <button
           onClick={() => {
-            setGameState(defaultState);
+            setGameState(JSON.parse(JSON.stringify(defaultState)));
             localStorage.clear();
           }}
         >

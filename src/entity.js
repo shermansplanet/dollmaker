@@ -7,17 +7,17 @@ export default ({ entity }) => {
 
   return (
     <div className="card">
-      <div>
+      <div style={{ margin: '4px 4px', fontSize: '14pt' }}>
         <b>{entity.name}</b>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', margin: '8px 4px' }}>
         🩸
-        <div style={{ width: '4px' }} />
+        <div style={{ width: '6px' }} />
         <div
           style={{
-            width: '46px',
+            width: '45px',
             height: barHeight + 'px',
-            backgroundColor: 'black',
+            backgroundColor: 'var(--bg)',
             fontSize: '10pt',
             textAlign: 'center',
             borderRadius: br + ' 0px 0px ' + br,
@@ -25,7 +25,7 @@ export default ({ entity }) => {
             borderRight: 'none',
           }}
         >
-          100%
+          {Math.round(entity.health)}%
         </div>
         <div
           style={{
@@ -45,7 +45,7 @@ export default ({ entity }) => {
           <div
             style={{
               position: 'absolute',
-              width: barWidth / 2 + 'px',
+              width: (barWidth * entity.health) / 100 + 'px',
               height: barHeight + 'px',
               backgroundColor: 'red',
               borderRadius: '0px ' + br + ' ' + br + ' 0px',
@@ -53,9 +53,9 @@ export default ({ entity }) => {
           />
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', alignItems: 'center', margin: '8px 4px' }}>
         🍖
-        <div style={{ width: '4px' }} />
+        <div style={{ width: '8px' }} />
         <div
           style={{
             display: 'flex',
@@ -74,7 +74,7 @@ export default ({ entity }) => {
           <div
             style={{
               position: 'absolute',
-              width: barWidth / 3 + 'px',
+              width: (barWidth * entity.meat) / 200 + 'px',
               height: barHeight + 'px',
               backgroundColor: '#a42',
               borderRadius: br + ' 0px 0px ' + br,
@@ -86,14 +86,14 @@ export default ({ entity }) => {
           style={{
             width: '46px',
             height: barHeight + 'px',
-            backgroundColor: 'black',
+            backgroundColor: 'var(--bg)',
             fontSize: '10pt',
             textAlign: 'center',
             borderTop: '1px solid grey',
             borderBottom: '1px solid grey',
           }}
         >
-          100%
+          {Math.round((entity.meat + entity.veg) / 2)}%
         </div>
         <div
           style={{
@@ -113,15 +113,25 @@ export default ({ entity }) => {
           <div
             style={{
               position: 'absolute',
-              width: barWidth / 3 + 'px',
+              width: (barWidth * entity.veg) / 200 + 'px',
               height: barHeight + 'px',
               backgroundColor: 'green',
               borderRadius: '0px ' + br + ' ' + br + ' 0px',
             }}
           />
         </div>
-        <div style={{ width: '4px' }} />
+        <div style={{ width: '8px' }} />
         🥦
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', margin: '8px 4px' }}>
+        <button
+          onClick={() => {
+            entity.meat = 100;
+            entity.veg = 100;
+          }}
+        >
+          Eat
+        </button>
       </div>
     </div>
   );
